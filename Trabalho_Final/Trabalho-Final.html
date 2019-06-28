@@ -8,13 +8,20 @@
 </head>
 <body>
 
-<script src="js/Three.js"></script>
+<script src="js/Three58.js"></script>
 <script src="js/Detector.js"></script>
 <script src="js/Stats.js"></script>
 <script src="js/OrbitControls.js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
 <script src="js/THREEx.FullScreen.js"></script>
 <script src="js/THREEx.WindowResize.js"></script>
+<script src="js/THREEx/THREEx.GeometryUtils.js"></script>
+
+
+<!-- Constructive Solid Geometry library by ChandlerPrall -->
+<script src="js/ThreeCSG.js"></script>
+<script src="js/csg.js"></script>
+
 
 <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
 <script>
@@ -59,7 +66,7 @@ function init()
 	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
 	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
 	scene.add(camera);
-	camera.position.set(0,150,400);
+	camera.position.set(0,150,800);
 	camera.lookAt(scene.position);
 	
 	// Renderizador
@@ -111,19 +118,27 @@ function init()
 	
 	var cubeGeometry = new THREE.CubeGeometry( 100, 50, 50 );
 	
-	var casa1Texture = new THREE.ImageUtils.loadTexture( 'images/brickhouse.jpg' );
+	/*var casa1Texture = new THREE.ImageUtils.loadTexture( 'images/brickhouse.jpg' );
 	var casa1Material = new THREE.MeshBasicMaterial( { map: casa1Texture  } );
 	var casa1 = new THREE.Mesh( cubeGeometry.clone(), casa1Material );
-	casa1.position.set(-95, 25, -100);
-	scene.add( casa1 );		
+	casa1.position.set(-150, 25, -100);
+	scene.add( casa1 );	*/	
 	
-	var casa2Texture = new THREE.ImageUtils.loadTexture( 'images/brickhouse2.jpg' );
+	var casa2Texture = new THREE.ImageUtils.loadTexture( 'images/flower.jpg' );
 	casa2Texture.wrapS = casa2Texture.wrapT = THREE.RepeatWrapping;
 	//crateTexture.repeat.set( 5, 5 );
 	var casa2Material = new THREE.MeshBasicMaterial( { map: casa2Texture } );
 	var casa2 = new THREE.Mesh( cubeGeometry.clone(), casa2Material );
-	casa2.position.set(55, 25, -100);
-	scene.add( casa2 );	
+	casa2.position.set(150, 25, -100);
+	scene.add( casa2 );
+	
+	var casa11Texture = new THREE.ImageUtils.loadTexture( 'images/flower.jpg' );
+	casa11Texture.wrapS = casa2Texture.wrapT = THREE.RepeatWrapping;
+	//crateTexture.repeat.set( 5, 5 );
+	var casa11Material = new THREE.MeshBasicMaterial( { map: casa11Texture } );
+	var casa11 = new THREE.Mesh( cubeGeometry.clone(), casa11Material );
+	casa11.position.set(-150, 25, -100);
+	scene.add( casa11 );	
 
 	var cubeGeometry2 = new THREE.CubeGeometry( 50, 100, 50 );
 
@@ -132,9 +147,75 @@ function init()
 	//casa3Texture.repeat.set( 5, 5 );
 	var casa3Material = new THREE.MeshBasicMaterial( { map: casa3Texture } );
 	var casa3 = new THREE.Mesh( cubeGeometry2.clone(), casa3Material );
-	casa3.position.set(-20, 50, -100);
+	casa3.position.set(0, 150, -100);
 	scene.add( casa3 );
+
+	var casa4Texture = new THREE.ImageUtils.loadTexture( 'images/bridge.jpg' );
+	casa4Texture.wrapS = casa4Texture.wrapT = THREE.RepeatWrapping;
+	//crateTexture.repeat.set( 5, 5 );
+	var casa4Material = new THREE.MeshBasicMaterial( { map: casa4Texture } );
+	var casa4 = new THREE.Mesh( cubeGeometry.clone(), casa4Material );
+	casa4.position.set(-50, 25, -100);
+	scene.add( casa4 );	
 	
+
+	var casa5Texture = new THREE.ImageUtils.loadTexture( 'images/brickhouse2.jpg' );
+	casa5Texture.wrapS = casa5Texture.wrapT = THREE.RepeatWrapping;
+	//crateTexture.repeat.set( 5, 5 );
+	var casa5Material = new THREE.MeshBasicMaterial( { map: casa5Texture } );
+	var casa5 = new THREE.Mesh( cubeGeometry.clone(), casa5Material );
+	casa5.position.set(-50, 75, -100);
+	scene.add( casa5 );	
+
+
+	var casa6Texture = new THREE.ImageUtils.loadTexture( 'images/brickhouse.jpg' );
+	casa6Texture.wrapS = casa6Texture.wrapT = THREE.RepeatWrapping;
+	//crateTexture.repeat.set( 5, 5 );
+	var casa6Material = new THREE.MeshBasicMaterial( { map: casa6Texture } );
+	var casa6 = new THREE.Mesh( cubeGeometry.clone(), casa6Material );
+	casa6.position.set(50, 75, -100);
+	scene.add( casa6 );
+
+	var casa7Texture = new THREE.ImageUtils.loadTexture( 'images/bridge.jpg' );
+	casa7Texture.wrapS = casa7Texture.wrapT = THREE.RepeatWrapping;
+	//crateTexture.repeat.set( 5, 5 );
+	var casa7Material = new THREE.MeshBasicMaterial( { map: casa7Texture } );
+	var casa7 = new THREE.Mesh( cubeGeometry.clone(), casa7Material );
+	casa7.position.set(150, 75, -100);
+	scene.add( casa7 );
+
+	var casa7Texture = new THREE.ImageUtils.loadTexture( 'images/bridge.jpg' );
+	casa7Texture.wrapS = casa7Texture.wrapT = THREE.RepeatWrapping;
+	//crateTexture.repeat.set( 5, 5 );
+	var casa7Material = new THREE.MeshBasicMaterial( { map: casa7Texture } );
+	var casa7 = new THREE.Mesh( cubeGeometry.clone(), casa7Material );
+	casa7.position.set(50, 25, -100);
+	scene.add( casa7 );
+
+	var casa8Texture = new THREE.ImageUtils.loadTexture( 'images/bridge.jpg' );
+	casa8Texture.wrapS = casa8Texture.wrapT = THREE.RepeatWrapping;
+	//crateTexture.repeat.set( 5, 5 );
+	var casa8Material = new THREE.MeshBasicMaterial( { map: casa8Texture } );
+	var casa8 = new THREE.Mesh( cubeGeometry.clone(), casa8Material );
+	casa8.position.set(-150, 75, -100);
+	scene.add( casa8 );
+
+	var casa9Texture = new THREE.ImageUtils.loadTexture( 'images/brickhouse.jpg' );
+	casa9Texture.wrapS = casa9Texture.wrapT = THREE.RepeatWrapping;
+	//crateTexture.repeat.set( 5, 5 );
+	var casa9Material = new THREE.MeshBasicMaterial( { map: casa9Texture } );
+	var casa9 = new THREE.Mesh( cubeGeometry.clone(), casa9Material );
+	casa9.position.set(-150, 125, -100);
+	scene.add( casa9 );
+
+	var casa10Texture = new THREE.ImageUtils.loadTexture( 'images/brickhouse.jpg' );
+	casa10Texture.wrapS = casa10Texture.wrapT = THREE.RepeatWrapping;
+	//crateTexture.repeat.set( 5, 5 );
+	var casa10Material = new THREE.MeshBasicMaterial( { map: casa10Texture } );
+	var casa10 = new THREE.Mesh( cubeGeometry.clone(), casa10Material );
+	casa10.position.set(150, 125, -100);
+	scene.add( casa10 );
+
 	var A = new THREE.Vector2( 0, 0 );
 	var B = new THREE.Vector2( 0 , 50 );
 	var C = new THREE.Vector2( 50, 50 );
@@ -143,23 +224,154 @@ function init()
 
 	var prismTexture = new THREE.ImageUtils.loadTexture( 'images/yellowTelhado.jpg' );
 	prismTexture.wrapS = prismTexture.wrapT = THREE.RepeatWrapping;
-	prismTexture.repeat.set( 1, 1 );
+	prismTexture.repeat.set( 5, 5 );
 	var Material = new THREE.MeshBasicMaterial( { map: prismTexture } );
 
-	var height = 30;                   
+	var height = 50;                   
 	var geometry = new PrismGeometry( [ A, B, C ], height ); 
 
 	var prism1 = new THREE.Mesh( geometry, Material );
 
-	prism1.position.set(-55, 100, -105);
+	prism1.position.set(-35, 200, -125);
 
 	prism1.rotation.z = -(Math.PI / 4);
-	//prism1.rotation.z = -20;
-
-	/*prism end*/
-	//camera.position.y = -10;
-	//camera.position.z = 80;
 	scene.add( prism1 );
+
+
+	var A = new THREE.Vector2( 0, 0 );
+	var B = new THREE.Vector2( 0 , 40 );
+	var C = new THREE.Vector2( 40, 40 );
+
+	//var material = new THREE.MeshLambertMaterial( { color: 0xe0e0e0, specular: 0xfafafa } );
+
+	var prismTexture = new THREE.ImageUtils.loadTexture( 'images/greenBridge.jpg' );
+	prismTexture.wrapS = prismTexture.wrapT = THREE.RepeatWrapping;
+	prismTexture.repeat.set( 5, 5 );
+	var Material = new THREE.MeshBasicMaterial( { map: prismTexture } );
+
+	var height = 50;                   
+	var geometry = new PrismGeometry( [ A, B, C ], height ); 
+
+	var prism2 = new THREE.Mesh( geometry, Material );
+
+	prism2.position.set(-150, 150, -125);
+
+	prism2.rotation.z = -(Math.PI / 4);
+	scene.add( prism2 );
+
+	var A = new THREE.Vector2( 0, 0 );
+	var B = new THREE.Vector2( 0 , 40 );
+	var C = new THREE.Vector2( 40, 40 );
+
+	//var material2 = new THREE.MeshLambertMaterial( { color: 0x00ff00, specular: 0xfafafa } );
+
+	var prismTexture = new THREE.ImageUtils.loadTexture( 'images/greenBridge.jpg' );
+	prismTexture.wrapS = prismTexture.wrapT = THREE.RepeatWrapping;
+	prismTexture.repeat.set( 5, 5 );
+	var Material2 = new THREE.MeshBasicMaterial( { map: prismTexture } );
+
+	var height = 50;                   
+	var geometry = new PrismGeometry( [ A, B, C ], height ); 
+
+	var prism3 = new THREE.Mesh( geometry, Material2 );
+
+	prism3.position.set(-203, 150, -125);
+
+	prism3.rotation.z = -(Math.PI / 4);
+	scene.add( prism3 );
+	
+	var prismTexture = new THREE.ImageUtils.loadTexture( 'images/greenBridge.jpg' );
+	prismTexture.wrapS = prismTexture.wrapT = THREE.RepeatWrapping;
+	prismTexture.repeat.set( 5, 5 );
+	var Material = new THREE.MeshBasicMaterial( { map: prismTexture } );
+
+	var height = 50;                   
+	var geometry = new PrismGeometry( [ A, B, C ], height ); 
+
+	var prism4 = new THREE.Mesh( geometry, Material );
+
+	prism4.position.set(98, 150, -125);
+
+	prism4.rotation.z = -(Math.PI / 4);
+	scene.add( prism4 );
+
+	var A = new THREE.Vector2( 0, 0 );
+	var B = new THREE.Vector2( 0 , 40 );
+	var C = new THREE.Vector2( 40, 40 );
+
+	//var material2 = new THREE.MeshLambertMaterial( { color: 0x00ff00, specular: 0xfafafa } );
+
+	var prismTexture = new THREE.ImageUtils.loadTexture( 'images/greenBridge.jpg' );
+	prismTexture.wrapS = prismTexture.wrapT = THREE.RepeatWrapping;
+	prismTexture.repeat.set( 5, 5 );
+	var Material2 = new THREE.MeshBasicMaterial( { map: prismTexture } );
+
+	var height = 50;                   
+	var geometry = new PrismGeometry( [ A, B, C ], height ); 
+
+	var prism5 = new THREE.Mesh( geometry, Material2 );
+
+	prism5.position.set(150, 150, -125);
+
+	prism5.rotation.z = -(Math.PI / 4);
+	scene.add( prism5 );
+
+	var materialNormal = new THREE.MeshNormalMaterial();
+
+	var cubeGeometry = new THREE.CubeGeometry( 100, 50, 50, 1, 1, 1);
+	var cubeMesh = new THREE.Mesh( cubeGeometry , materialNormal);
+	//cubeMesh.position.set(-200, 25, -100);
+
+	/*var cubeCsg	= THREE.CSG.toCSG(cubeMesh);
+	var resultCsg	= cubeCsg;
+
+	var cylinderGeometry = new THREE.CylinderGeometry( 30, 30, 58, 62);
+
+	var cylinderMesh= new THREE.Mesh( cylinderGeometry, materialNormal );
+
+	var cylinderCSG	= THREE.CSG.toCSG(cylinderMesh);
+
+	var resultCsg	= resultCsg.subtract(cylinderCSG);
+
+	var resultGeo	= THREE.CSG.fromCSG( resultCsg );
+
+	THREEx.GeometryUtils.center(resultGeo);	
+
+	mesh = new THREE.Mesh( resultGeo, materialNormal );
+
+	scene.add( mesh );*/
+
+	//THREE.GeometryUtils.merge(cylinder, cubeCsg);
+
+	//resultCsg	= resultCsg.subtract(cubeMesh);
+
+	//var cubeBSP = new ThreeBSP( cubeMesh );
+
+	/*var materialNormal = new THREE.MeshNormalMaterial();
+	
+	var cubeGeometry = new THREE.CubeGeometry( 100, 50, 50, 1, 1, 1);
+	var cubeMesh = new THREE.Mesh( cubeGeometry , materialNormal);
+	var cubeBSP = new ThreeBSP( cubeMesh );
+	
+	var cylinderGeometry = new THREE.CylinderGeometry( 30, 30, 58, 62, 1, false, 0, 3);
+	var material = new THREE.MeshBasicMaterial( {color: 0x0000ff} );
+	var cylinderMesh = new THREE.Mesh( cylinderGeometry, material );
+	var cylinderBSP = new ThreeBSP(cylinderMesh);
+
+	var newBSP = cubeBSP.subtract( cylinderBSP );
+	var newMesh = newBSP.toMesh( materialNormal );
+	newMesh.position.set(-150, 25, -100);
+	newMesh.rotation.x = -(Math.PI/2);
+	scene.add( newMesh );*/	
+
+	/*var cylinderGeometry = new THREE.CylinderGeometry(radiusTop= 30, radiumBottom=30, height= 58, radialSegments=62, 1, false, 0, 3);
+	var material = new THREE.MeshBasicMaterial( {color: 0x0000ff} );
+	var cylinder = new THREE.Mesh( geometry, material );
+	cylinder.position.set(150, 100, 100);
+	//cylinder.rotation.z = -(Math.PI / 2);
+	//cylinder.rotation.y = -(Math.PI / 2);
+	scene.add( cylinder );*/
+
 }
 
 function animate() 
