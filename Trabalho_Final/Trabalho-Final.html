@@ -131,6 +131,20 @@ function init()
 	var casa2 = new THREE.Mesh( cubeGeometry.clone(), casa2Material );
 	casa2.position.set(150, 25, -100);
 	scene.add( casa2 );
+
+	var casa2Texture = new THREE.ImageUtils.loadTexture( 'images/flower.jpg' );
+	casa2Texture.wrapS = casa2Texture.wrapT = THREE.RepeatWrapping;
+	//crateTexture.repeat.set( 5, 5 );
+	var casa2Material = new THREE.MeshBasicMaterial( { map: casa2Texture } );
+	var casa2 = new THREE.Mesh( cubeGeometry.clone(), casa2Material );
+	casa2.position.set(150, 25, -100);
+	scene.add( casa2 );
+
+	var cylinderGeom = new THREE.CylinderGeometry( 30, 30, 58, 62, 1, false, 0, 3);
+	var cylinMesh = new THREE.Mesh( cylinderGeom );
+	cylinMesh.position.set(150, 25, -200);
+	
+	scene.add(cylinMesh);
 	
 	var casa11Texture = new THREE.ImageUtils.loadTexture( 'images/flower.jpg' );
 	casa11Texture.wrapS = casa2Texture.wrapT = THREE.RepeatWrapping;
@@ -320,57 +334,25 @@ function init()
 
 	var cubeGeometry = new THREE.CubeGeometry( 100, 50, 50, 1, 1, 1);
 	var cubeMesh = new THREE.Mesh( cubeGeometry , materialNormal);
-	//cubeMesh.position.set(-200, 25, -100);
 
-	/*var cubeCsg	= THREE.CSG.toCSG(cubeMesh);
-	var resultCsg	= cubeCsg;
-
-	var cylinderGeometry = new THREE.CylinderGeometry( 30, 30, 58, 62);
-
-	var cylinderMesh= new THREE.Mesh( cylinderGeometry, materialNormal );
-
-	var cylinderCSG	= THREE.CSG.toCSG(cylinderMesh);
-
-	var resultCsg	= resultCsg.subtract(cylinderCSG);
-
-	var resultGeo	= THREE.CSG.fromCSG( resultCsg );
-
-	THREEx.GeometryUtils.center(resultGeo);	
-
-	mesh = new THREE.Mesh( resultGeo, materialNormal );
-
-	scene.add( mesh );*/
-
-	//THREE.GeometryUtils.merge(cylinder, cubeCsg);
-
-	//resultCsg	= resultCsg.subtract(cubeMesh);
-
-	//var cubeBSP = new ThreeBSP( cubeMesh );
-
-	/*var materialNormal = new THREE.MeshNormalMaterial();
+	var materialNormal = new THREE.MeshNormalMaterial();
 	
-	var cubeGeometry = new THREE.CubeGeometry( 100, 50, 50, 1, 1, 1);
-	var cubeMesh = new THREE.Mesh( cubeGeometry , materialNormal);
+	var cubeGeometry = new THREE.CubeGeometry( 100, 50, 50);
+	var cubeMesh = new THREE.Mesh( cubeGeometry);
 	var cubeBSP = new ThreeBSP( cubeMesh );
 	
 	var cylinderGeometry = new THREE.CylinderGeometry( 30, 30, 58, 62, 1, false, 0, 3);
-	var material = new THREE.MeshBasicMaterial( {color: 0x0000ff} );
-	var cylinderMesh = new THREE.Mesh( cylinderGeometry, material );
+	//var material = new THREE.MeshBasicMaterial( {color: 0x0000ff} );
+	cylinderGeometry.applyMatrix( new THREE.Matrix4().makeTranslation(0,0,-20) );
+	var cylinderMesh = new THREE.Mesh( cylinderGeometry );
+	cylinderMesh.position.x = -7;
 	var cylinderBSP = new ThreeBSP(cylinderMesh);
 
 	var newBSP = cubeBSP.subtract( cylinderBSP );
 	var newMesh = newBSP.toMesh( materialNormal );
-	newMesh.position.set(-150, 25, -100);
+	newMesh.position.set(-250, 25, 100);
 	newMesh.rotation.x = -(Math.PI/2);
-	scene.add( newMesh );*/	
-
-	/*var cylinderGeometry = new THREE.CylinderGeometry(radiusTop= 30, radiumBottom=30, height= 58, radialSegments=62, 1, false, 0, 3);
-	var material = new THREE.MeshBasicMaterial( {color: 0x0000ff} );
-	var cylinder = new THREE.Mesh( geometry, material );
-	cylinder.position.set(150, 100, 100);
-	//cylinder.rotation.z = -(Math.PI / 2);
-	//cylinder.rotation.y = -(Math.PI / 2);
-	scene.add( cylinder );*/
+	scene.add( newMesh );
 
 }
 
