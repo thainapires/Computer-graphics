@@ -17,3 +17,5 @@ Pasta destinada aos trabalhos da disciplina de computação gráfica 2019.1
 # Trabalho Final
 
 Peças do jogo "Pequeno construtor"
+
+![Imagem do jogo](https://i.pinimg.com/originals/a6/98/9c/a6989c41da704550ad0c47255c044408.jpg)
